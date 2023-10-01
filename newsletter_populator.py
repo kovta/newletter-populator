@@ -1,7 +1,11 @@
 import requests
+import os
+from dotenv import load_dotenv
 
-api_key = ""
-base_url = ""
+load_dotenv()
+api_key = os.getenv('API_KEY')
+base_url = os.getenv('BASE_URL')
+
 sheets = ["Creative"]
 
 CREATIVE_NAME = "F2"
