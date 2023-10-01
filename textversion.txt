@@ -1,0 +1,106 @@
+Clever links weekly to get you up to speed. Design, development, communication and everything else that is digital. {{MONTH}}{{DATE}} &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; &#847;&zwnj; 
+
+{{FULL-DATE}}
+[View in browser] (https://{{URL}}) 
+
+
+![image] (images/1687159556900_weekly_logo.png) 
+
+#{{ISSUE}}
+==========
+
+
+
+FEATURED CONTENT —
+
+![image] (images/1687160583606_link_image.png) 
+
+[{{FEATURED-CONTENT-TITLE}} →] (https://{{FEATURED-CONTENT-LINK}}) 
+=========================================================================================================================================================================================
+
+{{FEATURED-CONTENT-DESCRIPTION}}
+![image] (images/1687161593592_creative.png) 
+![image] (images/1687161843781_Ellipse_1.png) 
+
+
+GRAPHIC DESIGN
+--------------
+
+Curated by {{CGD-NAME}}
+mito.creative
+![image] (images/1687162315183_link_image_copy.png) 
+[{{CGD-CONTENT-1-SHORTLINK}}] (https://{{CGD-CONTENT-1-LINK}}) 
+
+[{{CGD-CONTENT-1-TITLE}} →] (https://{{CGD-CONTENT-1-LINK}}) 
+===================================================================================================================================================================================
+
+{{CGD-CONTENT-1-DESCRIPTION}}
+[{{CGD-CONTENT-2-SHORTLINK}}] (https://{{CGD-CONTENT-2-LINK}}) 
+
+[{{CGD-CONTENT-2-TITLE}} →] (https://{{CGD-CONTENT-2-LINK}}) 
+===================================================================================================================================================================================
+
+{{CGD-CONTENT-2-DESCRIPTION}}
+[{{CGD-CONTENT-3-SHORTLINK}}] (https://{{CGD-CONTENT-3-LINK}}) 
+
+[{{CGD-CONTENT-3-TITLE}} →] (https://{{CGD-CONTENT-3-LINK}}) 
+===================================================================================================================================================================================
+
+{{CGD-CONTENT-3-DESCRIPTION}}
+[{{CGD-CONTENT-4-SHORTLINK}}] (https://{{CGD-CONTENT-4-LINK}}) 
+
+[{{CGD-CONTENT-4-TITLE}} →] (https://{{CGD-CONTENT-4-LINK}}) 
+===================================================================================================================================================================================
+
+{{CGD-CONTENT-4-DESCRIPTION}}
+
+![image] (images/1687193764178_Group_1.png) 
+
+
+MITO HIGHLIGHTED JOBS
+
+
+[{{HIGHLIGHTED-JOB-TITLE}} →] (https://{{CGD-CONTENT-4-LINK}}) 
+=====================================================================================================================================================================================
+
+{{HIGHLIGHTED-JOB-DESCRIPTION}}
+[{{HIGHLIGHTED-JOB-LINK-DESCRIPTION}}] (https://{{HIGHLIGHTED-JOB-LINK}}) →
+
+
+
+MITO COMMUNITY
+
+{{COMMUNITY-CONTENT}}
+[{{COMMUNITY-LINK-DESCRIPTION}}] (https://{{COMMUNITY-LINK}} ) →
+
+![image] (images/1687194359922_img.png) 
+
+
+Did you enjoy this week’s collection?
+=====================================
+
+[ ![image] (images/1687194648829_like.png) ] (https://{{POSITIVE-FEEDBACK-LINK}}) 
+
+[ ![image] (images/1687194653669_unlike.png) ] (https://{{NEGATIVE-FEEDBACK-LINK}}) 
+[ 
+Share it with your friend → 
+] (https://{{SHARE-LINK}}) <!-- 
+[ Share it with your friend → ] (https://{{SHARE-LINK}}) 
+
+
+![image] (images/1687195481370_mito.png) 
+The Weekly newsletter is Mito’s very own, always-fresh content compilation, created each week by our various divisions who collect for you the articles and topics they are currently engrossed with.
+
+
+[ ![image] (images/1687195646293_linkedin.png) ] (https://www.linkedin.com/company/hellowearemito) 
+
+[ ![image] (images/1687195646137_facebook.png) ] (https://www.facebook.com/hellowearemito/) 
+
+[ ![image] (images/1687195645937_blog.png) ] (https://mito.hu/blog/) 
+[ ![image] (images/1687195645945_insta.png) ] (https://www.instagram.com/hellowearemito/) 
+
+[ ![image] (images/1687195646357_twitter.png) ] (https://twitter.com/hellowearemito) 
+
+
+You have received this email because you subscribed to the Mito Weekly Newsletter with the email address {{USER-EMAIL}} at mito.hu/weekly. Don't want to get any more emails? [Unsubscribe here] (https://{{UNSUBSCRIBE-LINK}}) .
+
