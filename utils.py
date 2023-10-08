@@ -1,6 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+from urllib import parse
 
 load_dotenv()
 api_key = os.getenv('API_KEY')
@@ -126,3 +127,11 @@ def concatenate_arrays(*arrays):
 
 def flatten_single_level(arr):
     return [item for sublist in arr for item in sublist]
+
+
+def urlify(string):
+    return parse.quote(string)
+
+
+def rangify(sheet, range):
+    return f"{urlify(sheet)}!{range}"

@@ -24,7 +24,7 @@ def get_populated_base_template():
         ("{{FULL-DATE}}", full_date),
         
         # View in browser URL
-        ("{{URL}}", "https://www.mailjet.com/"),
+        ("{{URL}}", "www.mailjet.com/"),
         
         # Feedback
         ("{{POSITIVE-FEEDBACK-LINK}}", "https://mito.us7.list-manage.com/track/click?u=2efacdbf6db4d3dc8d6ab63bb&amp;id=e497d15b80&amp;e=9a7cdb3223"),

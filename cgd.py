@@ -1,13 +1,15 @@
-from utils import get_text_from_cell, read_template_contents, replace_strings, get_cell_ranges
-from urllib import parse
+from utils import read_template_contents, replace_strings, get_cell_ranges, rangify
 from math import ceil
 
 A_TEAMS = ["Creative", "Strategy", "UX Design", "PPC", "Development"]
 B_TEAMS = ["Graphic Design", "Business & Tech", "UX Design", "Analytics", "Programmatic"]
 
-CGD_TEAM_CELL = "A2"
-CGD_NAME_CELL = "F2"
+HEADER_RANGE = "A2:H2"
 CONTENT_RANGE = "B9:B33"
+
+PROFILE_PICTURE_SHEET = "profilképek"
+PROFILE_PICTURE_RANGE = "A2:B25"
+
 CONTENT_GRID_LENGTH = 7
 
 cgd_entry_template = read_template_contents("./templates/cgd-content-entry.html")
@@ -43,10 +45,10 @@ class CGDData:
 
 def get_cgd_cell_ranges(teams):
     cell_ranges = []
+    cell_ranges.append(rangify(PROFILE_PICTURE_SHEET, PROFILE_PICTURE_RANGE))
     for team in teams:
-        cell_ranges.append(f"{parse.quote(team)}!{CONTENT_RANGE}")
-        cell_ranges.append(f"{parse.quote(team)}!{CGD_TEAM_CELL}")
-        cell_ranges.append(f"{parse.quote(team)}!{CGD_NAME_CELL}")
+        cell_ranges.append(rangify(team, CONTENT_RANGE))
+        cell_ranges.append(rangify(team, HEADER_RANGE))
     return cell_ranges
 
 
@@ -75,12 +77,21 @@ def extract_data_from_content(content_range):
     return data_list
 
 
+def extract_header_data(header_range):
+    range_values = header_range[0]["values"][0]
+    team = range_values[0]
+    name = range_values[5]
+    url = range_values[7]
+    banner_image_url = url if "http" in url else ""
+
+    return team, name, banner_image_url
+
+
 def extract_data_from_ranges(ranges):
-    team = filter_ranges(ranges, CGD_TEAM_CELL)[0]["values"][0][0]
-    name = filter_ranges(ranges, CGD_NAME_CELL)[0]["values"][0][0]
+    team, name, banner_image_url = extract_header_data(filter_ranges(ranges, HEADER_RANGE))
     data_list = extract_data_from_content(filter_ranges(ranges, CONTENT_RANGE))
 
-    return team, name, data_list
+    return team, name, banner_image_url, data_list
 
 
 def populate_entries(data_list):
@@ -94,26 +105,36 @@ def populate_entries(data_list):
         ])
     return entries
 
-def populate_section(team, name, data_list):
-    cgd_section = cgd_section_template
-    
-    cgd_entries = populate_entries(data_list)
-    cgd_section = replace_strings(cgd_section, [("{{CGD-CONTENT-SECTIONS}}", cgd_entries)])
-    cgd_section = replace_strings(cgd_section, [("{{CGD_TEAM_NAME}}", team)])
-    cgd_section = replace_strings(cgd_section, [("{{CGD-NAME}}", name)])
-    
+
+def fetch_profile_url_by_name(range_values, name):
+    profile_values = filter_ranges(range_values, PROFILE_PICTURE_SHEET)[0]["values"]
+    return [item[1] for item in profile_values if item[0] == name][0]
+
+
+def populate_section(team, name, banner_image_url, profile_image_url, data_list):
+    cgd_section = replace_strings(cgd_section_template, [
+        ("{{CGD-CONTENT-SECTIONS}}", populate_entries(data_list)),
+        ("{{CGD_TEAM_NAME}}", team),
+        ("{{CGD-NAME}}", name),
+        ("{{CGD-REP-IMAGE-URL}}", profile_image_url),
+        ("{{CGD-BANNER-IMAGE-URL}}", banner_image_url),
+        ("'{{CGD-BANNER-DISPLAY}}'", "block" if banner_image_url != "" else "none"),
+    ])
+
     return cgd_section
 
 
 def get_cgd_sections(week):
     teams = A_TEAMS if week == "A" else B_TEAMS
     range_values = get_cell_ranges(get_cgd_cell_ranges(teams))
-    
+
     cgd_sections = ""
     for team_name in teams:
         print(f"Populating CGD section for team: {team_name}")
         team_ranges = filter_ranges(range_values, team_name)
-        team, name, data_list = extract_data_from_ranges(team_ranges)
-        cgd_sections += populate_section(team, name, data_list)
+        team, name, banner_image_url, data_list = extract_data_from_ranges(team_ranges)
+        
+        profile_image_url = fetch_profile_url_by_name(range_values, name)
+        cgd_sections += populate_section(team, name, banner_image_url, profile_image_url, data_list)
 
     return cgd_sections
