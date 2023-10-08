@@ -1,23 +1,34 @@
-from utils import replace_strings, read_template_contents, write_to_file, get_text_from_cell, build_cell_range_url
+import sys
 from datetime import datetime
+from utils import replace_strings, write_to_file
 
-from cgd import get_cgd_sections
+from base_template import get_populated_base_template
 from featured_content import get_populated_featured_content
+from cgd import get_cgd_sections
+from highlighted_job import get_populated_highlighted_job
+from community import get_populated_community_box
 
 
-def populate():
-    mail_template = read_template_contents("./templates/mail.html")
-    newsletter = mail_template
-
-    featured_content = get_populated_featured_content()
-    newsletter = replace_strings(newsletter, [("{{FEATURED-CONTENT-SECTION}}", featured_content)])
-    
-    cgd_sections = get_cgd_sections("A")
-    newsletter = replace_strings(newsletter, [("{{CGD-SECTIONS}}", cgd_sections)])
+def populate(wee_id):
+    template = get_populated_base_template()
+    newsletter = replace_strings(template, [
+        ("{{FEATURED-CONTENT-SECTION}}", get_populated_featured_content()),
+        ("{{CGD-SECTIONS}}", get_cgd_sections(wee_id)),
+        ("{{HIGHLIGHTED-JOB-SECTION}}", get_populated_highlighted_job()),
+        ("{{COMMUNITY-BOX-SECTION}}", get_populated_community_box())
+    ])
 
     current_datetime = datetime.now()
     current_datetime_string = current_datetime.strftime('%Y%m%d-%H%M%S')
     write_to_file(f'./output/{current_datetime_string}.html', newsletter)
-    
 
-populate()
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <week_argument>")
+    else:
+        week = sys.argv[1]
+        if week == "week_a":
+            populate("A")
+        elif week == "week_b":
+            populate("B")
