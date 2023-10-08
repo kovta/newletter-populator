@@ -7,6 +7,31 @@ api_key = os.getenv('API_KEY')
 base_url = os.getenv('BASE_URL')
 
 
+def build_cell_range_url(ranges):
+    base = f"{base_url}/values:batchGet?"
+    for range in ranges:
+        base += f"ranges={range}&"
+    return f"{base}key={api_key}"
+
+
+def get_cell_ranges(cell_ranges):
+    try:
+        # Construct the URL to fetch data from the specified cell
+        response = requests.get(build_cell_range_url(cell_ranges))
+
+        if response.status_code == 200:
+            data = response.json()
+            return data.get('valueRanges', [])
+
+        else:
+            print(f"Failed to fetch data from {cell_ranges}. Status code: {response.status_code}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
+
+    return None
+
+
 def build_cell_url(sheet_name, cell_id):
     return f"{base_url}/values/{sheet_name}!{cell_id}?key={api_key}"
 
@@ -90,3 +115,14 @@ def write_to_file(file_path, content):
         print("Permission denied. You may not have access to write to the file.")
     except Exception as e:
         print("An error occurred:", str(e))
+
+
+def concatenate_arrays(*arrays):
+    concatenated_array = []
+    for array in arrays:
+        concatenated_array += array
+    return concatenated_array
+
+
+def flatten_single_level(arr):
+    return [item for sublist in arr for item in sublist]

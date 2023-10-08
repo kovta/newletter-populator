@@ -1,7 +1,7 @@
-from utils import replace_strings, read_template_contents, write_to_file
+from utils import replace_strings, read_template_contents, write_to_file, get_text_from_cell, build_cell_range_url
 from datetime import datetime
 
-from cgd import get_populated_section, A_TEAMS
+from cgd import get_cgd_sections
 from featured_content import get_populated_featured_content
 
 
@@ -12,9 +12,7 @@ def populate():
     featured_content = get_populated_featured_content()
     newsletter = replace_strings(newsletter, [("{{FEATURED-CONTENT-SECTION}}", featured_content)])
     
-    cgd_sections = ""
-    for team in A_TEAMS:
-        cgd_sections += get_populated_section(team)
+    cgd_sections = get_cgd_sections("A")
     newsletter = replace_strings(newsletter, [("{{CGD-SECTIONS}}", cgd_sections)])
 
     current_datetime = datetime.now()
