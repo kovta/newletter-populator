@@ -23,9 +23,10 @@ def get_populated_featured_content():
 def get_fc_data():
     range_values = get_cell_ranges([rangify(KEYWORDS_SHEET, CONTENT_RANGE)])[0]["values"]
 
-    image_url = range_values[0][0]
-    title = range_values[0][1]
-    description = range_values[0][2]
-    link = range_values[0][3]
+    cells = range_values[0]
+    image_url = cells[0]
+    title = cells[1]
+    description = cells[2]
+    link = "#" if len(cells) <= 3 else cells[3]
 
     return image_url, title, description, link

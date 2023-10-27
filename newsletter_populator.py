@@ -9,11 +9,11 @@ from highlighted_job import get_populated_highlighted_job
 from community import get_populated_community_box
 
 
-def populate(wee_id):
+def populate(week_id):
     template = get_populated_base_template()
     newsletter = replace_strings(template, [
         ("{{FEATURED-CONTENT-SECTION}}", get_populated_featured_content()),
-        ("{{CGD-SECTIONS}}", get_cgd_sections(wee_id)),
+        ("{{CGD-SECTIONS}}", get_cgd_sections(week_id)),
         ("{{HIGHLIGHTED-JOB-SECTION}}", get_populated_highlighted_job()),
         ("{{COMMUNITY-BOX-SECTION}}", get_populated_community_box())
     ])

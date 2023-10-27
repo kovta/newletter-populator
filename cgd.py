@@ -1,14 +1,14 @@
 from utils import read_template_contents, replace_strings, get_cell_ranges, rangify
 from math import ceil
 
-A_TEAMS = ["Creative", "Strategy", "UX Design", "PPC", "Development"]
-B_TEAMS = ["Graphic Design", "Business & Tech", "UX Design", "Analytics", "Programmatic"]
+A_TEAMS = ["Creative", "Strategy", "UX Design", "Digital Media", "Development"]
+B_TEAMS = ["Graphic Design and UI", "Social Media", "Business & Tech", "Analytics and Insights", "SEO and Performance Content"]
 
 HEADER_RANGE = "A2:H2"
 CONTENT_RANGE = "B9:B33"
 
 PROFILE_PICTURE_SHEET = "profilképek"
-PROFILE_PICTURE_RANGE = "A2:B25"
+PROFILE_PICTURE_RANGE = "A2:B200"
 
 CONTENT_GRID_LENGTH = 7
 
