@@ -5,6 +5,7 @@ dist
 .rest
 .vscode
 output
+*.zip
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

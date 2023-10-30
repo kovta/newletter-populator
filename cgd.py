@@ -81,7 +81,7 @@ def extract_header_data(header_range):
     range_values = header_range[0]["values"][0]
     team = range_values[0]
     name = range_values[5]
-    url = range_values[7]
+    url = range_values[7] if len(range_values) > 7 else ""
     banner_image_url = url if "http" in url else ""
 
     return team, name, banner_image_url
@@ -108,7 +108,7 @@ def populate_entries(data_list):
 
 def fetch_profile_url_by_name(range_values, name):
     profile_values = filter_ranges(range_values, PROFILE_PICTURE_SHEET)[0]["values"]
-    return [item[1] for item in profile_values if item[0] == name][0]
+    return [item[1] for item in profile_values if name in item[0]][0]
 
 
 def populate_section(team, name, banner_image_url, profile_image_url, data_list):

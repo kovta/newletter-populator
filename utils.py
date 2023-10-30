@@ -7,7 +7,6 @@ load_dotenv()
 api_key = os.getenv('API_KEY')
 base_url = os.getenv('BASE_URL')
 
-
 def build_cell_range_url(ranges):
     base = f"{base_url}/values:batchGet?"
     for range in ranges:
@@ -108,6 +107,10 @@ def substitue_template_contents(file_path, replacements):
 
 
 def write_to_file(file_path, content):
+    folder_path = os.path.dirname(file_path)
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
     try:
         with open(file_path, 'w') as file:
             file.write(content)

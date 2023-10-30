@@ -24,11 +24,14 @@ def populate(week_id):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <week_argument>")
-    else:
-        week = sys.argv[1]
-        if week == "week_a":
-            populate("A")
-        elif week == "week_b":
-            populate("B")
+    populate("B")
+
+    ## For running locally:
+    # if len(sys.argv) != 2:
+    #     print("Usage: python script.py <week_argument>")
+    # else:
+    #     week = sys.argv[1]
+    #     if week == "week_a":
+    #         populate("A")
+    #     elif week == "week_b":
+    #         populate("B")
