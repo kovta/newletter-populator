@@ -1,11 +1,20 @@
 import requests
 import os
+import sys
 from dotenv import load_dotenv
 from urllib import parse
 
 load_dotenv()
 api_key = os.getenv('API_KEY')
 base_url = os.getenv('BASE_URL')
+
+if not api_key:
+    print("ERROR: No API key provided")
+    sys.exit(1)
+
+if not base_url:
+    print("ERROR: Google Sheet base URL not specified")
+    sys.exit(1)
 
 def build_cell_range_url(ranges):
     base = f"{base_url}/values:batchGet?"
