@@ -127,14 +127,18 @@ def populate_section(team, name, banner_image_url, profile_image_url, data_list)
 def get_cgd_sections(week):
     teams = A_TEAMS if week == "A" else B_TEAMS
     range_values = get_cell_ranges(get_cgd_cell_ranges(teams))
-
     cgd_sections = ""
-    for team_name in teams:
-        print(f"Populating CGD section for team: {team_name}")
-        team_ranges = filter_ranges(range_values, team_name)
-        team, name, banner_image_url, data_list = extract_data_from_ranges(team_ranges)
-        
-        profile_image_url = fetch_profile_url_by_name(range_values, name)
-        cgd_sections += populate_section(team, name, banner_image_url, profile_image_url, data_list)
+
+    try:
+        for team_name in teams:
+            print(f"Populating CGD section for team: {team_name}")
+            team_ranges = filter_ranges(range_values, team_name)
+            team, name, banner_image_url, data_list = extract_data_from_ranges(team_ranges)
+            
+            profile_image_url = fetch_profile_url_by_name(range_values, name)
+            cgd_sections += populate_section(team, name, banner_image_url, profile_image_url, data_list)
+    except Exception as e:
+        print(f"An error occurred while generating section for: {team_name}\n\n{str(e)}")
+        raise e
 
     return cgd_sections

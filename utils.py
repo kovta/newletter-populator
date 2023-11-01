@@ -16,6 +16,10 @@ if not base_url:
     print("ERROR: Google Sheet base URL not specified")
     sys.exit(1)
 
+# script_directory = os.path.dirname(os.path.abspath(__file__))
+script_directory = os.path.dirname(os.path.abspath(sys.executable))
+
+
 def build_cell_range_url(ranges):
     base = f"{base_url}/values:batchGet?"
     for range in ranges:
@@ -83,7 +87,7 @@ def replace_strings(input_str, replacements):
 
 def read_template_contents(file_path):
     try:
-        with open(file_path, 'r') as file:
+        with open(f"{script_directory}/{file_path}", 'r') as file:
             return file.read()
     except FileNotFoundError:
         return "File not found."
@@ -93,29 +97,8 @@ def read_template_contents(file_path):
         return "An error occurred: " + str(e)
 
 
-def substitue_template_contents(file_path, replacements):
-    try:
-        # Read the content of the file
-        with open(file_path, 'r') as file:
-            file_contents = file.read()
-
-        # Replace each old string with the corresponding new string
-        updated_contents = replace_strings(file_contents, replacements)
-
-        # Write the updated content back to the file
-        with open(file_path, 'w') as file:
-            file.write(updated_contents)
-
-        print("Successfully replaced strings in the file.")
-    except FileNotFoundError:
-        print("File not found.")
-    except PermissionError:
-        print("Permission denied. You may not have access to write to the file.")
-    except Exception as e:
-        print("An error occurred:", str(e))
-
-
 def write_to_file(file_path, content):
+    file_path = os.path.normpath(f"{script_directory}/{file_path}")
     folder_path = os.path.dirname(file_path)
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
@@ -123,7 +106,7 @@ def write_to_file(file_path, content):
     try:
         with open(file_path, 'w') as file:
             file.write(content)
-        print("Successfully wrote to the new file.")
+        print(f"Successfully wrote content to: {file_path}")
     except PermissionError:
         print("Permission denied. You may not have access to write to the file.")
     except Exception as e:
