@@ -1,4 +1,4 @@
-import sys
+# import sys
 from datetime import datetime
 from utils import replace_strings, write_to_file
 
