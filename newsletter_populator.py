@@ -24,7 +24,7 @@ def populate(week_id):
 
 
 if __name__ == "__main__":
-    populate("B")
+    populate("A")
 
     ## For running locally:
     # if len(sys.argv) != 2:

@@ -4,9 +4,9 @@ import sys
 from dotenv import load_dotenv
 from urllib import parse
 
-load_dotenv()
-api_key = os.getenv('API_KEY')
-base_url = os.getenv('BASE_URL')
+# load_dotenv()
+# api_key = os.getenv('API_KEY')
+# base_url = os.getenv('BASE_URL')
 
 if not api_key:
     print("ERROR: No API key provided")
@@ -16,7 +16,10 @@ if not base_url:
     print("ERROR: Google Sheet base URL not specified")
     sys.exit(1)
 
+# Use for local execution
 # script_directory = os.path.dirname(os.path.abspath(__file__))
+
+# Use for binary
 script_directory = os.path.dirname(os.path.abspath(sys.executable))
 
 
@@ -130,3 +133,9 @@ def urlify(string):
 
 def rangify(sheet, range):
     return f"{urlify(sheet)}!{range}"
+
+
+def check_filled(*args):
+    for arg in args:
+        if arg is None or arg == '':
+            raise ValueError("Missing section data")
