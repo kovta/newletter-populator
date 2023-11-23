@@ -2,10 +2,11 @@ from utils import read_template_contents, replace_strings, get_cell_ranges, rang
 
 KEYWORDS_SHEET = "Keywords and Promo blokk"
 CONTENT_RANGE = "B7:E7"
+SECTION_NAME = "Featured Content"
 
 
 def get_populated_featured_content():
-    print("Populating Featured Content section")
+    print(f"Populating {SECTION_NAME} section")
 
     template = read_template_contents("./templates/featured-content.html")
 
@@ -22,11 +23,11 @@ def get_populated_featured_content():
 
         return section
     except Exception as e:
-        if e == "'values'" or str(e) == "Missing section data":
-            print("Skipping section population due to missing data in sheet")
+        if str(e) == "'values'" or str(e) == "Missing section data":
+            print(f"WARNING: Skipping {SECTION_NAME} section population due to missing data in sheet")
         else:
             print(
-                f"ERROR occurred while populating featured content section: {e}")
+                f"ERROR occurred while populating {SECTION_NAME} section: {e}")
         return ""
 
 

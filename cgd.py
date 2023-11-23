@@ -2,7 +2,8 @@ from utils import read_template_contents, replace_strings, get_cell_ranges, rang
 from math import ceil
 
 A_TEAMS = ["Creative", "Strategy", "UX Design", "Digital Media", "Development"]
-B_TEAMS = ["Graphic Design and UI", "Social Media", "Business & Tech", "Analytics and Insights", "SEO and Performance Content"]
+B_TEAMS = ["Graphic Design and UI", "Social Media", "Business & Tech",
+           "Analytics and Insights", "SEO and Performance Content"]
 
 HEADER_RANGE = "A2:H2"
 CONTENT_RANGE = "B9:B33"
@@ -12,7 +13,8 @@ PROFILE_PICTURE_RANGE = "A2:B200"
 
 CONTENT_GRID_LENGTH = 7
 
-cgd_entry_template = read_template_contents("./templates/cgd-content-entry.html")
+cgd_entry_template = read_template_contents(
+    "./templates/cgd-content-entry.html")
 cgd_section_template = read_template_contents("./templates/cgd-section.html")
 
 
@@ -41,7 +43,7 @@ class CGDData:
         print("Description:", self.description)
 
 
-## Range implementation
+# Range implementation
 
 def get_cgd_cell_ranges(teams):
     cell_ranges = []
@@ -88,7 +90,8 @@ def extract_header_data(header_range):
 
 
 def extract_data_from_ranges(ranges):
-    team, name, banner_image_url = extract_header_data(filter_ranges(ranges, HEADER_RANGE))
+    team, name, banner_image_url = extract_header_data(
+        filter_ranges(ranges, HEADER_RANGE))
     data_list = extract_data_from_content(filter_ranges(ranges, CONTENT_RANGE))
 
     return team, name, banner_image_url, data_list
@@ -107,8 +110,9 @@ def populate_entries(data_list):
 
 
 def fetch_profile_url_by_name(range_values, name):
-    profile_values = filter_ranges(range_values, PROFILE_PICTURE_SHEET)[0]["values"]
-    return [item[1] for item in profile_values if name in item[0]][0]
+    profile_values = filter_ranges(
+        range_values, PROFILE_PICTURE_SHEET)[0]["values"]
+    return [item[1] for item in profile_values if name.strip().lower() in item[0].strip().lower()][0]
 
 
 def populate_section(team, name, banner_image_url, profile_image_url, data_list):
@@ -133,12 +137,15 @@ def get_cgd_sections(week):
         for team_name in teams:
             print(f"Populating CGD section for team: {team_name}")
             team_ranges = filter_ranges(range_values, team_name)
-            team, name, banner_image_url, data_list = extract_data_from_ranges(team_ranges)
-            
+            team, name, banner_image_url, data_list = extract_data_from_ranges(
+                team_ranges)
+
             profile_image_url = fetch_profile_url_by_name(range_values, name)
-            cgd_sections += populate_section(team, name, banner_image_url, profile_image_url, data_list)
+            cgd_sections += populate_section(team, name,
+                                             banner_image_url, profile_image_url, data_list)
     except Exception as e:
-        print(f"An error occurred while generating section for: {team_name}\n\n{str(e)}")
+        print(
+            f"An error occurred while generating section for: {team_name}\n\n{str(e)}")
         raise e
 
     return cgd_sections
