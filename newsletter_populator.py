@@ -1,6 +1,6 @@
 # import sys
 from datetime import datetime
-from utils import replace_strings, write_to_file
+from utils import replace_strings, write_to_file, minify_html
 
 from base_template import get_populated_base_template
 from featured_content import get_populated_featured_content
@@ -20,13 +20,14 @@ def populate(week_id):
 
     current_datetime = datetime.now()
     current_datetime_string = current_datetime.strftime('%Y%m%d-%H%M%S')
-    write_to_file(f'./output/{current_datetime_string}.html', newsletter)
+    write_to_file(
+        f'./output/{current_datetime_string}.html', minify_html(newsletter))
 
 
 if __name__ == "__main__":
     populate("A")
 
-    ## For running locally:
+    # For running locally:
     # if len(sys.argv) != 2:
     #     print("Usage: python script.py <week_argument>")
     # else:

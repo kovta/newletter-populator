@@ -2,11 +2,12 @@ import requests
 import os
 import sys
 from dotenv import load_dotenv
+from minify_html import minify
 from urllib import parse
 
 # load_dotenv()
-# api_key = os.getenv('API_KEY')
-# base_url = os.getenv('BASE_URL')
+api_key = os.getenv('API_KEY')
+base_url = os.getenv('BASE_URL')
 
 if not api_key:
     print("ERROR: No API key provided")
@@ -40,7 +41,8 @@ def get_cell_ranges(cell_ranges):
             return data.get('valueRanges', [])
 
         else:
-            print(f"Failed to fetch data from {cell_ranges}. Status code: {response.status_code}")
+            print(
+                f"Failed to fetch data from {cell_ranges}. Status code: {response.status_code}")
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
@@ -61,10 +63,11 @@ def get_text_from_cell(sheet_name, cell_id):
             data = response.json()
             values = data.get('values', [])
             if values:
-                return values[0][0] # Assuming we're fetching a single cell
+                return values[0][0]  # Assuming we're fetching a single cell
 
         else:
-            print(f"Failed to fetch data from {cell_id}. Status code: {response.status_code}")
+            print(
+                f"Failed to fetch data from {cell_id}. Status code: {response.status_code}")
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
@@ -139,3 +142,7 @@ def check_filled(*args):
     for arg in args:
         if arg is None or arg == '':
             raise ValueError("Missing section data")
+
+
+def minify_html(input: str):
+    return minify(input, minify_css=True).replace("                              ", "")
