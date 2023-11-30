@@ -1,4 +1,4 @@
-from utils import read_template_contents, replace_strings, get_cell_ranges
+from utils import read_template_contents, replace_strings, fetch_cell_range_values
 from datetime import datetime
 
 KEYWORDS_SHEET = "Keywords and Promo blokk"
@@ -39,7 +39,7 @@ def get_populated_base_template():
 
 
 def get_data():
-    range_values = get_cell_ranges([ISSUE_RANGE])[0]["values"]
+    range_values = fetch_cell_range_values([ISSUE_RANGE])[0]["values"]
 
     issue_number = range_values[0][0]
     keywords = range_values[0][1]

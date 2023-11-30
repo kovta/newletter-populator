@@ -6,8 +6,8 @@ from minify_html import minify
 from urllib import parse
 
 # load_dotenv()
-api_key = os.getenv('API_KEY')
-base_url = os.getenv('BASE_URL')
+# api_key = os.getenv('API_KEY')
+# base_url = os.getenv('BASE_URL')
 
 if not api_key:
     print("ERROR: No API key provided")
@@ -31,9 +31,9 @@ def build_cell_range_url(ranges):
     return f"{base}key={api_key}"
 
 
-def get_cell_ranges(cell_ranges):
+def fetch_cell_range_values(cell_ranges):
     try:
-        # Construct the URL to fetch data from the specified cell
+        # Construct the URL to fetch the data array from the specified cell range
         response = requests.get(build_cell_range_url(cell_ranges))
 
         if response.status_code == 200:
@@ -54,7 +54,7 @@ def build_cell_url(sheet_name, cell_id):
     return f"{base_url}/values/{sheet_name}!{cell_id}?key={api_key}"
 
 
-def get_text_from_cell(sheet_name, cell_id):
+def fetch_text_from_cell(sheet_name, cell_id):
     try:
         # Construct the URL to fetch data from the specified cell
         response = requests.get(build_cell_url(sheet_name, cell_id))

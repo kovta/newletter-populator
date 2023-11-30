@@ -1,4 +1,4 @@
-from utils import read_template_contents, replace_strings, get_cell_ranges, rangify, check_filled
+from utils import read_template_contents, replace_strings, fetch_cell_range_values, rangify, check_filled
 
 KEYWORDS_SHEET = "Keywords and Promo blokk"
 CONTENT_RANGE = "B11:E11"
@@ -32,7 +32,7 @@ def get_populated_community_box():
 
 
 def get_data():
-    range_values = get_cell_ranges(
+    range_values = fetch_cell_range_values(
         [rangify(KEYWORDS_SHEET, CONTENT_RANGE)])[0]["values"]
 
     image_url = range_values[0][0]
