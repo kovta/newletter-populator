@@ -145,4 +145,4 @@ def check_filled(*args):
 
 
 def minify_html(input: str):
-    return minify(input, minify_css=True).replace("                              ", "")
+    return minify(input, minify_css=True).replace("https://https://", "https://").replace("                              ", "")
