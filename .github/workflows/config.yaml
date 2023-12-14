@@ -34,11 +34,8 @@ jobs:
         BASE_URL: ${{ vars.BASE_URL }}
       run: python newsletter_populator.py ${{ github.event.inputs.week }}
 
-    - name: Zip artifacts folder
-      run: zip -r newsletter.zip output
-
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: output-artifacts
-        path: newsletter.zip
+        path: output
