@@ -117,9 +117,14 @@ def populate_entries(data_list):
 
 
 def fetch_profile_url_by_name(range_values, name):
-    profile_values = filter_ranges(
-        range_values, PROFILE_PICTURE_SHEET)[0]["values"]
-    return [item[1] for item in profile_values if name.strip().lower() in item[0].strip().lower()][0]
+    try:
+        profile_values = filter_ranges(
+            range_values, PROFILE_PICTURE_SHEET)[0]["values"]
+        return [item[1] for item in profile_values if name.strip().lower() in item[0].strip().lower()][0]
+    except Exception as e:
+        print(f"Error occurred while fetching the profile picture for: '{name}'")
+        print("Make sure that the name is present exactly in the profile pictures sheet!")
+        raise e
 
 
 def populate_section(team, name, business_unit, unit_color, banner_image_url, profile_image_url, data_list):
@@ -155,6 +160,5 @@ def get_cgd_sections(week):
         except Exception as e:
             print(
                 f"An error occurred while generating section for: {team_name}\n\n{str(e)}")
-            raise e
 
     return cgd_sections
