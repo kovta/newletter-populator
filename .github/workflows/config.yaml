@@ -36,7 +36,8 @@ jobs:
 
     - name: Run Python application with secret variable
       env:
-        MY_SECRET_VARIABLE: ${{ secrets.YOUR_SECRET_NAME }}
+        API_KEY: ${{ secrets.API_KEY }}
+        BASE_URL: ${{ github.vars.BASE_URL }}
       run: python newsletter_populator.py ${{ github.event.inputs.week }}
 
     - name: Zip artifacts folder
