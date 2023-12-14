@@ -1,0 +1,49 @@
+name: Newsletter populator
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: 'The Week whose sections should be generated. Should be A or B.'
+        required: true
+        default: 'A'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Python application with secret variable
+      env:
+        MY_SECRET_VARIABLE: ${{ secrets.YOUR_SECRET_NAME }}
+      run: python newsletter_populator.py ${{ github.event.inputs.week }}
+
+    - name: Zip artifacts folder
+      run: zip -r newsletter.zip putput
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: output-artifacts
+        path: newsletter.zip

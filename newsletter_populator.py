@@ -1,4 +1,4 @@
-# import sys
+import sys
 from datetime import datetime
 from utils import replace_strings, write_to_file, minify_html
 
@@ -25,14 +25,14 @@ def populate(week_id):
 
 
 if __name__ == "__main__":
-    populate("A")
+    # populate("B")
 
     # For running locally:
-    # if len(sys.argv) != 2:
-    #     print("Usage: python script.py <week_argument>")
-    # else:
-    #     week = sys.argv[1]
-    #     if week == "week_a":
-    #         populate("A")
-    #     elif week == "week_b":
-    #         populate("B")
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <week_argument>")
+    else:
+        week = sys.argv[1]
+        if week == "A":
+            populate("A")
+        elif week == "B":
+            populate("B")

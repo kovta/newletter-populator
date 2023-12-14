@@ -5,9 +5,9 @@ from dotenv import load_dotenv
 from minify_html import minify
 from urllib import parse
 
-# load_dotenv()
-# api_key = os.getenv('API_KEY')
-# base_url = os.getenv('BASE_URL')
+load_dotenv()
+api_key = os.getenv('API_KEY')
+base_url = os.getenv('BASE_URL')
 
 if not api_key:
     print("ERROR: No API key provided")
@@ -18,10 +18,10 @@ if not base_url:
     sys.exit(1)
 
 # Use for local execution
-# script_directory = os.path.dirname(os.path.abspath(__file__))
+script_directory = os.path.dirname(os.path.abspath(__file__))
 
 # Use for binary
-script_directory = os.path.dirname(os.path.abspath(sys.executable))
+# script_directory = os.path.dirname(os.path.abspath(sys.executable))
 
 
 def build_cell_range_url(ranges):

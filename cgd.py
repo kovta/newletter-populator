@@ -63,6 +63,8 @@ def filter_ranges(ranges, predicate):
 def extract_data_from_content(content_range):
     data_list = []
     range_values = content_range[0]["values"]
+
+    # split the returned values for each complete content entry in the specific team's table
     data_length = ceil(len(range_values) / CONTENT_GRID_LENGTH)
 
     for i in range(data_length):
@@ -87,7 +89,6 @@ def extract_header_data(header_range):
     name = range_values[5]
     business_unit = range_values[7]
     unit_color = range_values[8]
-    # print(f"{team}/{name}: {business_unit}, {unit_color}")
 
     url = range_values[10] if len(range_values) > 10 else ""
     banner_image_url = url if "http" in url else ""
@@ -141,9 +142,9 @@ def get_cgd_sections(week):
     range_values = fetch_cell_range_values(get_cgd_cell_ranges(teams))
     cgd_sections = ""
 
-    try:
-        for team_name in teams:
-            print(f"Populating CGD section for team: {team_name}")
+    for team_name in teams:
+        print(f"Populating CGD section for team: {team_name}")
+        try:
             team_ranges = filter_ranges(range_values, team_name)
             team, name, business_unit, unit_color, banner_image_url, data_list = extract_data_from_ranges(
                 team_ranges)
@@ -151,9 +152,9 @@ def get_cgd_sections(week):
             profile_image_url = fetch_profile_url_by_name(range_values, name)
             cgd_sections += populate_section(team, name, business_unit, unit_color,
                                              banner_image_url, profile_image_url, data_list)
-    except Exception as e:
-        print(
-            f"An error occurred while generating section for: {team_name}\n\n{str(e)}")
-        raise e
+        except Exception as e:
+            print(
+                f"An error occurred while generating section for: {team_name}\n\n{str(e)}")
+            raise e
 
     return cgd_sections
