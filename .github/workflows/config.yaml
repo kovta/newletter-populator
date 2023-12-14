@@ -9,7 +9,7 @@ on:
         default: 'A'
 
 jobs:
-  build:
+  generate-newsletter:
     runs-on: ubuntu-latest
 
     steps:
