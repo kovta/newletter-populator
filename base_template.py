@@ -32,7 +32,6 @@ def get_populated_base_template():
         
         # Share
         ("{{SHARE-LINK}}", "https://mito.us7.list-manage.com/track/click?u=2efacdbf6db4d3dc8d6ab63bb&id=f6232968c8&e=9a7cdb3223"),
-        ("{{UNSUBSCRIBE-LINK}}", "https://mito.us7.list-manage.com/unsubscribe?u=2efacdbf6db4d3dc8d6ab63bb&id=5d85c33b3c&e=9a7cdb3223&c=5669a964b4"),
     ])
 
     return template
